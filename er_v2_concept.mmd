@@ -1,0 +1,52 @@
+%%{init: {"theme":"base","themeVariables":{"primaryColor":"#eef5fb","primaryBorderColor":"#355c7d","primaryTextColor":"#152c3d","lineColor":"#355c7d","fontFamily":"Arial","fontSize":"18px"}}}%%
+erDiagram
+    direction LR
+    CUSTOMERS ||--o{ VEHICLES : owns
+    VEHICLES ||--o{ REPAIR_ORDERS : has
+    EMPLOYEES ||--o{ REPAIR_ORDERS : accepts
+    REPAIR_ORDERS ||--o{ ORDER_SERVICES : includes
+    SERVICES ||--o{ ORDER_SERVICES : describes
+    REPAIR_ORDERS ||--o{ ORDER_PARTS : contains
+    PARTS ||--o{ ORDER_PARTS : identifies
+    REPAIR_ORDERS ||--o{ PAYMENTS : receives
+    CUSTOMERS["Клиент"] {
+        string full_name "ФИО"
+        string phone "Телефон"
+    }
+    VEHICLES["Автомобиль"] {
+        string vin "VIN"
+        string make "Марка"
+        string model "Модель"
+        integer year "Год выпуска"
+    }
+    EMPLOYEES["Сотрудник"] {
+        string full_name "ФИО"
+        string position "Должность"
+    }
+    REPAIR_ORDERS["Заказ"] {
+        date opened_at "Дата приема"
+        string status "Статус"
+    }
+    SERVICES["Услуга"] {
+        string name "Наименование"
+        decimal standard_price "Базовая цена"
+    }
+    ORDER_SERVICES["Работа в заказе"] {
+        integer quantity "Количество"
+        decimal unit_price "Цена на дату заказа"
+    }
+    PARTS["Запчасть"] {
+        string name "Наименование"
+        string sku "Артикул"
+        integer stock_quantity "Остаток"
+        decimal price "Цена"
+    }
+    ORDER_PARTS["Запчасть в заказе"] {
+        integer quantity "Количество"
+        decimal unit_price "Цена на дату заказа"
+    }
+    PAYMENTS["Платеж"] {
+        date paid_at "Дата оплаты"
+        decimal amount "Сумма"
+        string method "Способ"
+    }
